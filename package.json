@@ -8,6 +8,7 @@
     "name": "Ocean Team",
     "email": "dev@tryocean.fun"
   },
+  "license": "MIT",
   "desktopName": "ocean",
   "main": "dist-electron/main.js",
   "scripts": {
