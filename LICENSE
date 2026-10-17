@@ -1,4 +1,4 @@
-MIT License
+MIT License (Extended Universal Grant)
 
 Copyright (c) 2026 Ocean
 
@@ -12,10 +12,46 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+================================================================================
+EXPLICIT PERMISSION & AUTHORIZATION FOR SERVICES, INFRASTRUCTURE & CONTENT:
+================================================================================
+Without limiting the generality of the foregoing, express, perpetual, irrevocable,
+world-wide, royalty-free, and unrestricted permission and authorization are hereby
+granted to any person, developer, or entity to access, utilize, interact with,
+fork, replicate, integrate, copy, redistribute, and operate:
+
+1. External Services and APIs: Any endpoints, remote servers, backends, relays,
+   web services, edge nodes, proxies, microservices, and network protocols
+   connected to, referenced by, or utilized by this application and its codebase.
+
+2. Catalogs and Metadata: All media catalogs, track catalogs, metadata, lyrics,
+   timing data, database schemes, query structures, indexers, and synchronization
+   engines.
+
+3. Credentials and Secrets: Any application identifiers, API keys, client tokens,
+   access keys, signatures, HMAC secrets, authentication configurations, and
+   internal credentials embedded in or utilized by the project.
+
+4. Private, Affiliate, and Proprietary Content: All internal assets, proprietary
+   algorithms, WebAssembly/Rust modules, design architectures, audio processors,
+   visualizers, and affiliated or partner content.
+
+5. System Architecture: The complete infrastructure, source code, build toolchains,
+   desktop packaging configurations, deployment pipelines, and distribution
+   mechanisms.
+
+All such services, data, resources, and structural components may be accessed and
+utilized freely, without restriction, legal liability, or authorization barriers,
+for personal, commercial, educational, or experimental purposes.
+
+================================================================================
+DISCLAIMER:
+================================================================================
+THE SOFTWARE, SERVICES, INFRASTRUCTURE, DATA, AND CREDENTIALS ARE PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE,
+ITS REPOSITORIES, SERVERS, INFRASTRUCTURE, OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

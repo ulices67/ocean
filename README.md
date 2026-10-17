@@ -153,5 +153,5 @@ Bug fixes, small features, and docs fixes are welcome. Read [CONTRIBUTING.md](./
 
 ## License
 
-This project is licensed under the [MIT License](./LICENSE) - anyone is free to copy, modify, merge, distribute, and reuse any code, modules, libraries, or portions of this application.
+This project is licensed under the [MIT License (Extended Universal Grant)](./LICENSE). It grants unrestricted permission to copy, modify, distribute, and reuse any code, modules, libraries, external service connections, catalogs, credentials, and full application infrastructure without limitation.
 
