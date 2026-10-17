@@ -5,7 +5,7 @@
   "private": true,
   "description": "Ocean Music Player",
   "author": {
-    "name": "hkamori",
+    "name": "Ocean Team",
     "email": "dev@tryocean.fun"
   },
   "desktopName": "ocean",
@@ -24,7 +24,7 @@
     "electron:build:mac": "tsc -b && vite build && electron-builder --mac"
   },
   "build": {
-    "appId": "com.hkamori.ocean",
+    "appId": "fun.tryocean.desktop",
     "productName": "Ocean",
     "executableName": "ocean",
     "artifactName": "${productName}-${version}-${arch}.${ext}",
@@ -46,7 +46,7 @@
     "linux": {
       "executableName": "ocean",
       "syncDesktopName": true,
-      "maintainer": "hkamori <dev@tryocean.fun>",
+      "maintainer": "Ocean Team <dev@tryocean.fun>",
       "icon": "build/icons",
       "target": [
         "AppImage",
