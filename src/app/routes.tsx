@@ -15,7 +15,7 @@ export function AppRoutes() {
       <Route path="/library/playlist" element={<PlaylistPage />} />
       <Route path="/artist" element={<ArtistPage />} />
       <Route path="/collection" element={<CollectionPage />} />
-      <Route path="/login" element={<Navigate to="/" replace />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/settings" element={<Navigate to="/" replace />} />
       <Route path="/player" element={<PlayerPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
