@@ -27,69 +27,24 @@ export type AuthState = {
   logout: () => Promise<void>;
 };
 
+const DEFAULT_GUEST_USER: AuthUser = {
+  id: "ocean-local-user",
+  username: "ocean_user",
+  displayName: "Ocean User",
+  email: "user@local.ocean",
+  avatarUrl: null,
+};
+
 export const useAuthStore = create<AuthState>((set) => ({
-  status: "initializing",
-  user: null,
+  status: "authenticated",
+  user: DEFAULT_GUEST_USER,
   initialize: async () => {
     const stored = getAuthSession();
-    if (!stored) {
-      set({ status: "anonymous", user: null });
+    if (stored?.user) {
+      set({ status: "authenticated", user: stored.user });
       return;
     }
-    // Optimistically authenticate if stored user is present
-    if (stored.user) {
-      set({ status: "authenticated", user: stored.user });
-    }
-    try {
-      const getMePromise = api.getMe();
-      const timeoutPromise = new Promise<null>((_, reject) =>
-        setTimeout(() => reject(new Error("Auth initialize timeout")), 6000),
-      );
-      const user = await Promise.race([getMePromise, timeoutPromise]);
-      const current = getAuthSession();
-      if (current) setAuthSession({ ...current, user: user ?? current.user });
-      set({ status: "authenticated", user: user ?? current?.user ?? stored.user });
-    } catch (err) {
-      if (err instanceof ApiError && (err.status === 401 || err.status === 403)) {
-        // Attempt refresh before clearing session in case access token expired between sessions
-        const current = getAuthSession();
-        if (current?.refreshToken) {
-          try {
-            const refreshed = await refreshAuthSession();
-            if (refreshed) {
-              const retryUser = await api.getMe().catch(() => null);
-              const active = getAuthSession();
-              if (active) setAuthSession({ ...active, user: retryUser ?? active.user });
-              set({
-                status: "authenticated",
-                user: retryUser ?? refreshed.user ?? current.user ?? stored.user,
-              });
-              return;
-            }
-          } catch {
-            // refresh failed
-          }
-        }
-        // refreshAuthSession already drops the session when the server rejects the refresh token (401/403).
-        // still here = the refresh failed for a transient reason (network, 5xx), so keep the user signed in.
-        // shortcut: a server answering 400/422 for a dead refresh token keeps a broken session, use logout then
-        const remaining = getAuthSession();
-        if (remaining?.refreshToken) {
-          set({ status: "authenticated", user: remaining.user ?? stored.user });
-          return;
-        }
-        setAuthSession(null);
-        set({ status: "anonymous", user: null });
-      } else {
-        // If it's a network error, timeout, or transient 5xx, preserve authenticated state if we have a stored session
-        if (stored.user || stored.accessToken) {
-          set({ status: "authenticated", user: stored.user });
-        } else {
-          setAuthSession(null);
-          set({ status: "anonymous", user: null });
-        }
-      }
-    }
+    set({ status: "authenticated", user: DEFAULT_GUEST_USER });
   },
   login: async (email, password) => {
     const result = await api.login(email, password);
