@@ -9,14 +9,12 @@
 [![TypeScript 5](https://img.shields.io/badge/TypeScript_5-5.0-3178C6?style=flat-square&logo=typescript&logoColor=black&labelColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS_v4-v4.0-06B6D4?style=flat-square&logo=tailwindcss&logoColor=black&labelColor=white)](https://tailwindcss.com)
 [![WebAssembly](https://img.shields.io/badge/Rust-WebAssembly-654FF0?style=flat-square&logo=webassembly&logoColor=black&labelColor=white)](https://webassembly.org)
-[![License: Source-Available](https://img.shields.io/badge/License-Source--Available-blueviolet?style=flat-square&labelColor=white)](./LICENSE)
 
 [Preview](#preview) •
 [Architecture](#architecture) •
 [Getting Started](#getting-started) •
 [Building](#building) •
-[Contributing](#contributing) •
-[License](#license)
+[Contributing](#contributing)
 
 <br/>
 
@@ -139,7 +137,7 @@ Compiled distributions will be placed in the `release/` directory.
 
 ## Contributing
 
-Bug fixes, small features, and docs fixes are welcome. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before you open a pull request. The [license](./LICENSE) limits what a fork is allowed to do.
+Bug fixes, small features, and docs fixes are welcome. Read [CONTRIBUTING.md](./CONTRIBUTING.md) before you open a pull request.
 
 ---
 
@@ -148,15 +146,4 @@ Bug fixes, small features, and docs fixes are welcome. Read [CONTRIBUTING.md](./
 - [`@braccato/core`](https://github.com/better-lyrics/braccato) & `@braccato/parsers` — Synced lyrics components and format parsers.
 - [`@kawarp/react`](https://github.com/better-lyrics/kawarp) & `@kawarp/core` — WebGL background shader components.
 - [Solar Icons](https://solar-icons.com) & [MingCute Icons](https://www.mingcute.com) — Icon collections.
-
----
-
-## License
-
-Ocean is distributed under the **Ocean Source-Available & Non-Commercial Contribution License**.
-
-- **Allowed**: Personal non-commercial usage, local builds, and upstream contributions.
-- **Prohibited**: Commercial distribution, public competing forks, or extracting core algorithms for third-party products.
-
-See [LICENSE](./LICENSE) for details.
 

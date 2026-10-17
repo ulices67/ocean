@@ -2,8 +2,6 @@
 
 This file is for people sending a change to [tryocean/desktop](https://github.com/tryocean/desktop). Setup for just running the app is in the [README](./README.md).
 
-Read [LICENSE](./LICENSE) before you open a pull request. Ocean is source-available. It is not an open-source license. You may fork and modify the code in order to send a fix, a feature, or a docs change back to this repository. You may not publish a competing app, ship your own installer, or lift the signer, lyrics, shader, or interface work into another product. Sending a pull request gives the maintainers the rights described in section 3 of the license, including the right to ship your change inside Ocean.
-
 Questions and bug reports go in [issues](https://github.com/tryocean/desktop/issues). Longer design talk can go in [discussions](https://github.com/tryocean/desktop/discussions).
 
 ## What to send

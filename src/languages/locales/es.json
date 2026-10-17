@@ -745,8 +745,7 @@
       "report_issue": "Informar de un problema",
       "report_issue_desc": "Envía informes de errores, sugerencias de funciones o comentarios en GitHub.",
       "special_thanks": "Agradecimientos especiales",
-      "special_thanks_desc": "@braccato/core, @kawarp/react, Solar Icons y MingCute Icons.",
-      "license_notice": "Distribuido bajo la licencia Ocean Source-Available & Non-Commercial."
+      "special_thanks_desc": "@braccato/core, @kawarp/react, Solar Icons y MingCute Icons."
     },
     "connection": {
       "title": "Conexión",

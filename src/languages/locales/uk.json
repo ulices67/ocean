@@ -778,8 +778,7 @@
       "report_issue": "Повідомити про помилку",
       "report_issue_desc": "Надіслати багрепорт або запропонувати покращення на GitHub.",
       "special_thanks": "Подяки",
-      "special_thanks_desc": "@braccato/core, @kawarp/react, Solar Icons та MingCute Icons.",
-      "license_notice": "Розповсюджується за ліцензією Ocean Source-Available & Non-Commercial."
+      "special_thanks_desc": "@braccato/core, @kawarp/react, Solar Icons та MingCute Icons."
     },
     "connection": {
       "title": "З'єднання",
