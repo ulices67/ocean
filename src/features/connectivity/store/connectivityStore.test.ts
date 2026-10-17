@@ -3,7 +3,7 @@ import { useConnectivityStore } from "./connectivityStore";
 
 vi.mock("../lib/diagnostics", () => ({
   runAllChecks: vi.fn().mockResolvedValue({ checks: [], main: null }),
-  DIAG_ENDPOINTS: { api: "https://api.tryliner.fun", covers: "https://covers.tryliner.fun", link: "https://link.tryliner.fun" },
+  DIAG_ENDPOINTS: { api: "https://api.tryocean.fun", covers: "https://covers.tryocean.fun", link: "https://link.tryocean.fun" },
 }));
 
 describe("connectivityStore trip logic", () => {
@@ -58,7 +58,7 @@ describe("connectivityStore trip logic", () => {
 
   it("updates lastSavedDumpPath when runAndSaveDump succeeds", async () => {
     vi.useRealTimers();
-    (window as any).linerElectron = {
+    (window as any).oceanElectron = {
       saveDump: vi.fn().mockResolvedValue({
         success: true,
         filePath: "/home/user/Desktop/test-offline-dump.json",
@@ -69,6 +69,6 @@ describe("connectivityStore trip logic", () => {
     expect(res.success).toBe(true);
     expect(useConnectivityStore.getState().lastSavedDumpPath).toBe("/home/user/Desktop/test-offline-dump.json");
 
-    delete (window as any).linerElectron;
+    delete (window as any).oceanElectron;
   });
 });

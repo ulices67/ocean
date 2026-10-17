@@ -1,8 +1,8 @@
 // client-side cover proxy url minting and signing
-// derives covers.tryliner.fun fallback url directly from track raw cover url
+// derives covers.tryocean.fun fallback url directly from track raw cover url
 // hmac token is computed in-memory via rust wasm module
 
-const COVER_PROXY_BASE = "https://covers.tryliner.fun";
+const COVER_PROXY_BASE = "https://covers.tryocean.fun";
 const COVER_PROXY_SIZE = 1024;
 
 // Must mirror ALLOWED_HOSTS in apps/workers/covers: a token for any other host
@@ -21,7 +21,7 @@ const resolved = new Map<string, string | undefined>();
 const inflight = new Map<string, Promise<string | undefined>>();
 
 function isElectron(): boolean {
-  return typeof window !== "undefined" && typeof window.linerElectron?.signCoverUrl === "function";
+  return typeof window !== "undefined" && typeof window.oceanElectron?.signCoverUrl === "function";
 }
 
 function base64UrlEncode(input: string): string {
@@ -44,7 +44,7 @@ export async function signCoverUrl(payload: string): Promise<string> {
   // Web build / a dev browser tab has no native layer; leave the token unsigned.
   if (!isElectron()) return payload;
   try {
-    const signature = await window.linerElectron!.signCoverUrl(payload);
+    const signature = await window.oceanElectron!.signCoverUrl(payload);
     return signature ? `${payload}.${signature}` : payload;
   } catch {
     // IPC unavailable/failed: fall back to unsigned so a Worker with

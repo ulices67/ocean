@@ -5,10 +5,10 @@ import { SHARE_BASE_URL } from "@/shared/utils/share";
 // close an import cycle (api hooks record failures into this feature).
 const API_BASE =
   (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, "") ||
-  "https://api.tryliner.fun";
+  "https://api.tryocean.fun";
 const COVERS_BASE =
   (import.meta.env.VITE_COVERS_PROXY_URL as string | undefined)?.replace(/\/+$/, "") ||
-  "https://covers.tryliner.fun";
+  "https://covers.tryocean.fun";
 
 const CHECK_TIMEOUT_MS = 8000;
 
@@ -91,7 +91,7 @@ export async function runAllChecks(): Promise<DiagnosticsResult> {
       clearTimeout(timer);
     }
   };
-  if (typeof window !== "undefined" && window.linerElectron?.diagnoseNetwork) {
+  if (typeof window !== "undefined" && window.oceanElectron?.diagnoseNetwork) {
     checks.push({ id: "covers", status: "ok" });
   } else {
     checks.push(await ping("covers", COVERS_BASE));
@@ -101,7 +101,7 @@ export async function runAllChecks(): Promise<DiagnosticsResult> {
   const hosts = [API_BASE, COVERS_BASE, SHARE_BASE_URL].map(hostOf);
   let main: MainNetResult | null = null;
   try {
-    const bridge = typeof window !== "undefined" ? window.linerElectron?.diagnoseNetwork : undefined;
+    const bridge = typeof window !== "undefined" ? window.oceanElectron?.diagnoseNetwork : undefined;
     if (bridge) {
       main = await bridge(hosts);
       for (const d of main.dns) {

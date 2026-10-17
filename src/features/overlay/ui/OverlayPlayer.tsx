@@ -44,7 +44,7 @@ export function OverlayPlayer() {
 
 
   useEffect(() => {
-    window.linerElectron?.getOverlayInitialState?.().then((initial) => {
+    window.oceanElectron?.getOverlayInitialState?.().then((initial) => {
       if (initial) {
         anchorPosRef.current = initial.positionMs;
         anchorTimeRef.current = performance.now();
@@ -53,8 +53,8 @@ export function OverlayPlayer() {
       }
     });
 
-    if (window.linerElectron?.onOverlayState) {
-      const cleanupState = window.linerElectron.onOverlayState((newState) => {
+    if (window.oceanElectron?.onOverlayState) {
+      const cleanupState = window.oceanElectron.onOverlayState((newState) => {
         setState(newState);
       });
       return cleanupState;
@@ -62,15 +62,15 @@ export function OverlayPlayer() {
   }, []);
 
   useEffect(() => {
-    if (!window.linerElectron?.onOverlayVisibility) return;
-    const cleanupVisibility = window.linerElectron.onOverlayVisibility((visible) => {
+    if (!window.oceanElectron?.onOverlayVisibility) return;
+    const cleanupVisibility = window.oceanElectron.onOverlayVisibility((visible) => {
       setIsVisible(visible);
     });
     return cleanupVisibility;
   }, []);
 
   const sendAction = useCallback((action: OverlayAction) => {
-    window.linerElectron?.sendOverlayAction?.(action);
+    window.oceanElectron?.sendOverlayAction?.(action);
   }, []);
 
   const isPlaying = state.status === "playing";

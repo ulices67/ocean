@@ -119,7 +119,7 @@ export function markCoverReady(url: string | undefined, effectiveUrl?: string, e
  * Begin loading a cover if it isn't already tracked. Idempotent: repeated calls
  * for the same URL return the original in-flight promise.
  *
- * The covers.tryliner.fun proxy fallback (derived from `url`, see
+ * The covers.tryocean.fun proxy fallback (derived from `url`, see
  * `coverSigner`) is tried exactly once if the direct `url` fails to load, so
  * the registry only settles as "error" when both the direct CDN and the proxy
  * are unreachable (or the host isn't proxyable). Readiness stays keyed by the

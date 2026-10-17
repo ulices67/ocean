@@ -1,6 +1,6 @@
 export type Locale = "en" | "ru" | "uk" | "es";
 
-const LOCALE_STORAGE_KEY = "liner_locale";
+const LOCALE_STORAGE_KEY = "ocean_locale";
 
 export function getStoredLocale(): Locale {
   if (typeof window === "undefined" || !window.localStorage) return "en";

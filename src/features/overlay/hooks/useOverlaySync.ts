@@ -26,7 +26,7 @@ export function useOverlaySync() {
   // Sync settings on mount
   useEffect(() => {
     const s = useOverlaySettingsStore.getState();
-    window.linerElectron?.updateOverlaySettings?.({
+    window.oceanElectron?.updateOverlaySettings?.({
       enabled: s.enabled,
       position: s.position,
       shortcut: s.shortcut,
@@ -40,8 +40,8 @@ export function useOverlaySync() {
     const handleAuthChange = () => {
       const session = getAuthSession();
       if (!session) {
-        window.linerElectron?.closeOverlay?.();
-        window.linerElectron?.sendOverlayAction?.({ type: "closeOverlay" });
+        window.oceanElectron?.closeOverlay?.();
+        window.oceanElectron?.sendOverlayAction?.({ type: "closeOverlay" });
       }
     };
     window.addEventListener("auth:changed", handleAuthChange);
@@ -52,9 +52,9 @@ export function useOverlaySync() {
 
   // Listen for actions from overlay
   useEffect(() => {
-    if (!window.linerElectron?.onOverlayAction) return;
+    if (!window.oceanElectron?.onOverlayAction) return;
 
-    const cleanup = window.linerElectron.onOverlayAction((action: OverlayAction) => {
+    const cleanup = window.oceanElectron.onOverlayAction((action: OverlayAction) => {
       switch (action.type) {
         case "togglePlay":
           void playerEngine.togglePlayPause();
@@ -118,7 +118,7 @@ export function useOverlaySync() {
 
   // Push updates to overlay
   useEffect(() => {
-    if (!window.linerElectron?.overlayUpdateState) return;
+    if (!window.oceanElectron?.overlayUpdateState) return;
 
     const artistName =
       (currentTrack?.artists && typeof currentTrack.artists === "string" ? currentTrack.artists : "") ||
@@ -153,7 +153,7 @@ export function useOverlaySync() {
       isLiked,
     };
 
-    window.linerElectron.overlayUpdateState(payload);
+    window.oceanElectron.overlayUpdateState(payload);
   }, [
     player.status,
     player.positionMs,

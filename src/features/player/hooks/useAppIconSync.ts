@@ -91,8 +91,8 @@ export function useAppIconSync() {
     void renderIconDataUrl(logoSrc, isLight, shouldInvert).then((dataUrl) => {
       if (!active || !dataUrl) return;
 
-      if (window.linerElectron?.setAppIcon) {
-        window.linerElectron.setAppIcon(dataUrl);
+      if (window.oceanElectron?.setAppIcon) {
+        window.oceanElectron.setAppIcon(dataUrl);
       }
 
       let favicon = document.querySelector<HTMLLinkElement>("link[rel~='icon']");

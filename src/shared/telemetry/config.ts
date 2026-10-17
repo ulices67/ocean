@@ -1,5 +1,5 @@
 /**
- * Client Telemetry & Metrics Configuration for Liner Desktop.
+ * Client Telemetry & Metrics Configuration for Ocean Desktop.
  * Easily toggled via environment variables or runtime switch.
  */
 
@@ -16,15 +16,10 @@ export interface TelemetryConfig {
   flushIntervalMs: number;
 }
 
-const DEFAULT_INGEST_URL =
-  (import.meta.env.VITE_MONITOR_INGEST_URL as string | undefined) ||
-  "https://monitor.tryliner.fun/v1/ingest";
+const DEFAULT_INGEST_URL = "";
+const DEFAULT_ERROR_URL = "";
 
-const DEFAULT_ERROR_URL =
-  (import.meta.env.VITE_MONITOR_ERROR_URL as string | undefined) ||
-  "https://monitor.tryliner.fun/v1/client/error";
-
-const STORAGE_KEY = "liner_telemetry_opt_in";
+const STORAGE_KEY = "ocean_telemetry_opt_in";
 
 function getInitialOptIn(): boolean {
   return false;

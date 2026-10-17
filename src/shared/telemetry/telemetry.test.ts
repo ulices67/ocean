@@ -6,7 +6,7 @@ import {
   isTelemetryEnabled,
 } from "./index";
 
-describe("Liner Desktop Telemetry Module", () => {
+describe("Ocean Desktop Telemetry Module", () => {
   const originalFetch = globalThis.fetch;
 
   beforeEach(() => {

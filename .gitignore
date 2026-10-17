@@ -39,7 +39,7 @@ renderer.log
 *.tsbuildinfo
 
 # cache
-.liner_local_cache
+.ocean_local_cache
 signer/
 
 # agent rules

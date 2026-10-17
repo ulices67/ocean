@@ -89,7 +89,7 @@ export const useImportStore = create<ActiveImportState>((set, get) => ({
         return job;
       }
 
-      const targetWsUrl = job.workerWsUrl?.trim() || "wss://import.tryliner.fun/v1/ws";
+      const targetWsUrl = job.workerWsUrl?.trim() || "wss://import.tryocean.fun/v1/ws";
       if (targetWsUrl && job.importToken) {
         set({ isPolling: true });
         get().listenToWebSocketWorker({ ...job, workerWsUrl: targetWsUrl });

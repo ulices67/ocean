@@ -46,7 +46,7 @@ describe("baseUrl endpoint manager & probe", () => {
     expect(getApiBaseUrl()).toBe(DEFAULT_PRIMARY_API);
     expect(switchToFallbackEdge()).toBe(false);
     expect(getApiBaseUrl()).toBe(DEFAULT_PRIMARY_API);
-    expect(storageMap.get("liner_active_api_base")).not.toBe(FALLBACK_EDGE_API);
+    expect(storageMap.get("ocean_active_api_base")).not.toBe(FALLBACK_EDGE_API);
   });
 
   it("stays on the https primary api when health probe fails", async () => {
@@ -68,6 +68,6 @@ describe("baseUrl endpoint manager & probe", () => {
     const endpoint = await initApiEndpointProbe(500);
     expect(endpoint).toBe(DEFAULT_PRIMARY_API);
     expect(getApiBaseUrl()).toBe(DEFAULT_PRIMARY_API);
-    expect(storageMap.get("liner_active_api_base")).toBe(DEFAULT_PRIMARY_API);
+    expect(storageMap.get("ocean_active_api_base")).toBe(DEFAULT_PRIMARY_API);
   });
 });

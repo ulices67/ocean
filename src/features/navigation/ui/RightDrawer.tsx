@@ -144,7 +144,7 @@ const QueueList = memo(function QueueList({
               }`}
               imageShape="square"
               onPlay={() => {
-                if (typeof window !== "undefined" && window.__linerWasDragging) return;
+                if (typeof window !== "undefined" && window.__oceanWasDragging) return;
                 void playerEngine.playTrack(
                   item,
                   queue,

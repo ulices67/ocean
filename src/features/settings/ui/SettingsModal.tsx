@@ -79,7 +79,7 @@ const SETTING_ITEMS: { tabId: TabId; titleKey: string; descKey?: string }[] = [
   { tabId: "Storage", titleKey: "settings.storage.open_folder", descKey: "settings.storage.open_folder_description" },
 
   // About
-  { tabId: "About", titleKey: "settings.about.liner", descKey: "common.app.version" },
+  { tabId: "About", titleKey: "settings.about.ocean", descKey: "common.app.version" },
   { tabId: "About", titleKey: "settings.notifications.test_button" },
 ];
 
@@ -196,7 +196,7 @@ export default function SettingsModal() {
     user?.displayName ||
     user?.username ||
     user?.email?.split("@")[0] ||
-    "Liner";
+    "Ocean";
   const handle = user?.username ? `@${user.username}` : (user?.email ?? t("settings.manage_account"));
 
   return (
@@ -289,7 +289,7 @@ export default function SettingsModal() {
             </p>
             <button
               type="button"
-              onClick={() => openExternal("https://github.com/tryliner/desktop/blob/main/README.md")}
+              onClick={() => openExternal("https://github.com/tryocean/desktop/blob/main/README.md")}
               className="w-full flex items-center gap-[10px] px-[10px] py-[8px] rounded-[8px] border-0 bg-transparent text-text-secondary hover:bg-border-alpha-14 hover:text-text-primary cursor-pointer text-left transition-colors"
               style={{ ...font, fontSize: "13.5px" }}
             >
@@ -298,7 +298,7 @@ export default function SettingsModal() {
             </button>
             <button
               type="button"
-              onClick={() => openExternal("https://t.me/liner_app?direct")}
+              onClick={() => openExternal("https://t.me/ocean_app?direct")}
               className="w-full flex items-center gap-[10px] px-[10px] py-[8px] rounded-[8px] border-0 bg-transparent text-text-secondary hover:bg-border-alpha-14 hover:text-text-primary cursor-pointer text-left transition-colors"
               style={{ ...font, fontSize: "13.5px" }}
             >

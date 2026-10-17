@@ -27,7 +27,7 @@ import {
   type CachedLyricsItem,
 } from "@/features/lyrics";
 import { preloadCoverArt } from "@/features/covers";
-import { linerDb, type CachedLyricsRecord } from "@/shared/storage";
+import { oceanDb, type CachedLyricsRecord } from "@/shared/storage";
 import { showToast } from "@/shared/ui";
 import { createTranslatorSync, getStoredLocale } from "@/languages";
 import type { Track } from "@/shared/types";
@@ -557,7 +557,7 @@ class PlayerEngine {
     if (wasLoading) {
       playerRuntime?.cancelPendingLoad();
     }
-    const audioEl = document.getElementById("liner-audio") as HTMLAudioElement | null;
+    const audioEl = document.getElementById("ocean-audio") as HTMLAudioElement | null;
     if (audioEl && !Number.isNaN(audioEl.currentTime)) {
       store.setPosition(Math.round(audioEl.currentTime * 1000));
     }
@@ -1040,7 +1040,7 @@ class PlayerEngine {
       void this.prefetchLyrics(nextTrack.id);
     }
 
-    void linerDb.putTrack(nextTrack);
+    void oceanDb.putTrack(nextTrack);
 
     if (playerRuntime) {
       void playerRuntime.preloadTrack(nextTrack);
@@ -1057,7 +1057,7 @@ class PlayerEngine {
 
     const prefetchPromise = (async () => {
       try {
-        const existing = await linerDb.getLyrics(trackId);
+        const existing = await oceanDb.getLyrics(trackId);
         if (existing) {
           const lastChecked = existing.lastCheckedAt || 0;
           if (Date.now() - lastChecked < SEVEN_DAYS_MS) {
@@ -1097,7 +1097,7 @@ class PlayerEngine {
 
         if (bestCandidate && shouldCacheLyricsCandidate(bestCandidate)) {
           lyricsCache.set(trackId, bestCandidate, providers);
-          void linerDb.putLyrics({
+          void oceanDb.putLyrics({
             trackId,
             syncLevel: bestCandidate.syncLevel,
             quality: bestCandidate.quality.total,
@@ -1148,7 +1148,7 @@ class PlayerEngine {
     let cached: CachedLyricsItem | CachedLyricsRecord | null = memoryCached || null;
     if (!cached) {
       try {
-        cached = await linerDb.getLyrics(trackId);
+        cached = await oceanDb.getLyrics(trackId);
       } catch {
         cached = null;
       }
@@ -1188,7 +1188,7 @@ class PlayerEngine {
         return;
       }
 
-      void linerDb.updateLyricsChecked(trackId);
+      void oceanDb.updateLyricsChecked(trackId);
     } else {
       lyricsStore.setLyricsState({
         lyricsLoading: true,
@@ -1209,7 +1209,7 @@ class PlayerEngine {
       try {
         await this.inFlightLyricsPrefetches.get(trackId);
         if (token !== this.lyricsLoadToken || controller.signal.aborted) return;
-        const freshCached = lyricsCache.get(trackId) || (await linerDb.getLyrics(trackId));
+        const freshCached = lyricsCache.get(trackId) || (await oceanDb.getLyrics(trackId));
         if (freshCached && freshCached.candidate) {
           const parsed = parseRawLyrics(
             freshCached.candidate.lyrics.content,
@@ -1284,7 +1284,7 @@ class PlayerEngine {
             });
             if (shouldCacheLyricsCandidate(candidate)) {
               lyricsCache.set(trackId, candidate, updatedProviders);
-              void linerDb.putLyrics({
+              void oceanDb.putLyrics({
                 trackId,
                 syncLevel: candidate.syncLevel,
                 quality: candidate.quality.total,
@@ -1322,7 +1322,7 @@ class PlayerEngine {
           if (bestCandidate && shouldCacheLyricsCandidate(bestCandidate)) {
             const currentProviders = useLyricsStore.getState().availableProviders;
             lyricsCache.set(trackId, bestCandidate, currentProviders);
-            void linerDb.putLyrics({
+            void oceanDb.putLyrics({
               trackId,
               syncLevel: bestCandidate.syncLevel,
               quality: bestCandidate.quality.total,

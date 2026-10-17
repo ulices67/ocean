@@ -5,7 +5,7 @@ export type { AuthTokens, AuthUser };
 
 import { DEFAULT_PRIMARY_API, getApiBaseUrl, switchToFallbackEdge, switchToPrimaryApi } from "./baseUrl";
  
-const STORAGE_KEY = "liner_auth_session";
+const STORAGE_KEY = "ocean_auth_session";
 
 let session: AuthTokens | null = null;
 let refreshPromise: Promise<AuthTokens | null> | null = null;

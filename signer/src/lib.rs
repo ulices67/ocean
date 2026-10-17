@@ -1,4 +1,4 @@
-//! Liner Signer — Protected HMAC request and cover signing library for Liner.
+//! Ocean Signer — Protected HMAC request and cover signing library for Ocean.
 
 pub mod crypto;
 pub mod ffi;

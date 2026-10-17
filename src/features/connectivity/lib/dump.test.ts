@@ -6,7 +6,7 @@ describe("buildOfflineDump", () => {
     const dump = buildOfflineDump({
       checks: [
         { id: "device", status: "ok", detail: "online" },
-        { id: "dns", host: "api.tryliner.fun", status: "ok", detail: "1.2.3.4", latencyMs: 12 },
+        { id: "dns", host: "api.tryocean.fun", status: "ok", detail: "1.2.3.4", latencyMs: 12 },
       ],
       failures: [{ at: 123, method: "GET", path: "/v1/me", status: 0, latencyMs: 5 }],
       main: {
@@ -14,17 +14,17 @@ describe("buildOfflineDump", () => {
         tcp: [],
         tls: [],
         controls: [],
-        trace: { host: "api.tryliner.fun", ok: true, hops: ["1  1.2.3.4  1ms"], ms: 900 },
+        trace: { host: "api.tryocean.fun", ok: true, hops: ["1  1.2.3.4  1ms"], ms: 900 },
         platform: "linux x64",
       },
-      endpoints: { api: "https://api.tryliner.fun", covers: "https://covers.tryliner.fun", link: "https://link.tryliner.fun" },
+      endpoints: { api: "https://api.tryocean.fun", covers: "https://covers.tryocean.fun", link: "https://link.tryocean.fun" },
     });
     expect(dump.summary).toEqual({ ok: 2, fail: 0, total: 2 });
     expect(dump.app.version).toMatch(/^\d+\.\d+\.\d+/);
     expect(dump.failures).toHaveLength(1);
     expect(dump.machine?.trace?.hops).toHaveLength(1);
     expect(JSON.stringify(dump)).not.toMatch(/bearer|token|authorization|proxy/i);
-    expect(dumpFilename(dump)).toMatch(/^liner-offline-dump-.*\.json$/);
+    expect(dumpFilename(dump)).toMatch(/^ocean-offline-dump-.*\.json$/);
   });
 
   it("calls electron saveDump when available", async () => {
@@ -32,7 +32,7 @@ describe("buildOfflineDump", () => {
       checks: [],
       failures: [],
       main: null,
-      endpoints: { api: "https://api.tryliner.fun", covers: "https://covers.tryliner.fun", link: "https://link.tryliner.fun" },
+      endpoints: { api: "https://api.tryocean.fun", covers: "https://covers.tryocean.fun", link: "https://link.tryocean.fun" },
     });
 
     const mockSaveDump = vi.fn().mockResolvedValue({
@@ -40,7 +40,7 @@ describe("buildOfflineDump", () => {
       filePath: "/home/user/Desktop/test-dump.json",
     });
 
-    (window as any).linerElectron = {
+    (window as any).oceanElectron = {
       saveDump: mockSaveDump,
     };
 
@@ -51,6 +51,6 @@ describe("buildOfflineDump", () => {
     expect(result.success).toBe(true);
     expect(result.filePath).toBe("/home/user/Desktop/test-dump.json");
 
-    delete (window as any).linerElectron;
+    delete (window as any).oceanElectron;
   });
 });

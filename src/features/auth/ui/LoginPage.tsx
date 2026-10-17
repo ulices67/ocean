@@ -195,14 +195,14 @@ export default function LoginPage() {
           <div className="flex shrink-0 items-center gap-[10px]">
             <AppImage
               src={logo}
-              alt="Liner"
+              alt="Ocean"
               width={25}
               height={30}
               className="theme-logo h-[22px] w-auto"
               priority
             />
             <span className="text-[16px] font-[600] tracking-[-0.025em] text-text-primary">
-              Liner
+              Ocean
             </span>
             <Select
               options={LOCALE_OPTIONS}
@@ -617,7 +617,7 @@ export default function LoginPage() {
           <p className="m-0 shrink-0 text-center text-[11px] leading-[1.5] text-text-tertiary">
             {t("login.legal")}{" "}
             <a
-              href="https://tryliner.fun/terms"
+              href="https://tryocean.fun/terms"
               target="_blank"
               rel="noreferrer"
               className="text-text-secondary underline underline-offset-2 hover:text-text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-text-primary rounded-xs transition-colors"
@@ -626,7 +626,7 @@ export default function LoginPage() {
             </a>{" "}
             {t("login.legal_and")}{" "}
             <a
-              href="https://tryliner.fun/privacy"
+              href="https://tryocean.fun/privacy"
               target="_blank"
               rel="noreferrer"
               className="text-text-secondary underline underline-offset-2 hover:text-text-primary focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-text-primary rounded-xs transition-colors"

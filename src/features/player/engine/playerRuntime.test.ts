@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { playerRuntime, PlayerRuntime } from "./playerRuntime";
 import { usePlayerStore } from "../store/playerStore";
 import { api } from "@/shared/api";
-import { linerDb } from "@/shared/storage";
+import { oceanDb } from "@/shared/storage";
 import type { Track } from "@/shared/types";
 
 const track: Track = {
@@ -113,13 +113,13 @@ describe("PlayerRuntime audio caching", () => {
     vi.restoreAllMocks();
   });
 
-  it("plays directly from linerDb cache when audio blob exists without calling backend session API", async () => {
+  it("plays directly from oceanDb cache when audio blob exists without calling backend session API", async () => {
     const playSpy = vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue();
     const sessionSpy = vi.spyOn(api, "createPlaybackSession");
     const fetchSpy = vi.spyOn(globalThis, "fetch");
 
     const mockBlob = new Blob(["fake-opus-data"], { type: "audio/webm" });
-    await linerDb.putAudio("cached-track-1", mockBlob, "audio/webm");
+    await oceanDb.putAudio("cached-track-1", mockBlob, "audio/webm");
 
     const cachedTrack: Track = {
       ...track,
@@ -135,7 +135,7 @@ describe("PlayerRuntime audio caching", () => {
     expect(usePlayerStore.getState().status).toBe("playing");
   });
 
-  it("fetches, plays, and saves to linerDb on cache miss", async () => {
+  it("fetches, plays, and saves to oceanDb on cache miss", async () => {
     const playSpy = vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue();
     const sessionSpy = vi.spyOn(api, "createPlaybackSession").mockResolvedValue({
       sessionId: "pb_123",
@@ -166,12 +166,12 @@ describe("PlayerRuntime audio caching", () => {
     expect(sessionSpy).toHaveBeenCalledTimes(1);
     expect(playSpy).toHaveBeenCalled();
     expect(fetchSpy).not.toHaveBeenCalled();
-    expect(await linerDb.getAudio("fresh-track-2")).toBeNull();
+    expect(await oceanDb.getAudio("fresh-track-2")).toBeNull();
 
     (playerRuntime as any).audio.dispatchEvent(new Event("playing"));
 
     await vi.waitFor(async () => {
-      const storedAudio = await linerDb.getAudio("fresh-track-2");
+      const storedAudio = await oceanDb.getAudio("fresh-track-2");
       expect(storedAudio?.byteSize).toBe(16);
     });
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -191,7 +191,7 @@ describe("PlayerRuntime audio caching", () => {
       expiresAt: new Date(Date.now() + 600_000).toISOString(),
     });
     const badTrack: Track = { ...track, id: "bad-cache-track", title: "Bad Cache" };
-    await linerDb.putAudio(badTrack.id, new Blob([new Uint8Array([9, 9, 9])], { type: "audio/webm" }), "audio/webm");
+    await oceanDb.putAudio(badTrack.id, new Blob([new Uint8Array([9, 9, 9])], { type: "audio/webm" }), "audio/webm");
     usePlayerStore.setState({ currentTrack: badTrack });
 
     await playerRuntime!.loadAndPlay(badTrack);
@@ -200,7 +200,7 @@ describe("PlayerRuntime audio caching", () => {
     (playerRuntime as any).audio.dispatchEvent(new Event("error"));
 
     await vi.waitFor(() => expect(sessionSpy).toHaveBeenCalledTimes(1));
-    expect(await linerDb.getAudio(badTrack.id)).toBeNull();
+    expect(await oceanDb.getAudio(badTrack.id)).toBeNull();
 
     const errors: unknown[] = [];
     (playerRuntime as any).onError = (e: unknown) => errors.push(e);
@@ -239,7 +239,7 @@ describe("PlayerRuntime audio caching", () => {
     expect(sessionSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
 
-    const storedAudio = await linerDb.getAudio("next-track-3");
+    const storedAudio = await oceanDb.getAudio("next-track-3");
     expect(storedAudio).not.toBeNull();
     expect(storedAudio?.byteSize).toBe(16);
 
@@ -274,7 +274,7 @@ describe("PlayerRuntime audio caching", () => {
     );
 
     const corruptTrack: Track = { ...track, id: "corrupt-track", title: "Corrupt" };
-    await linerDb.putAudio("corrupt-track", new Blob(["styp-segment"]), "audio/webm");
+    await oceanDb.putAudio("corrupt-track", new Blob(["styp-segment"]), "audio/webm");
     usePlayerStore.setState({ currentTrack: corruptTrack, positionMs: 0 });
     await playerRuntime!.loadAndPlay(corruptTrack);
 
@@ -283,7 +283,7 @@ describe("PlayerRuntime audio caching", () => {
     try {
       audio.dispatchEvent(new Event("error"));
       await vi.waitFor(() => expect(sessionSpy).toHaveBeenCalledTimes(1));
-      expect(await linerDb.getAudio("corrupt-track")).toBeNull();
+      expect(await oceanDb.getAudio("corrupt-track")).toBeNull();
 
       // a second failure on the same track gives up instead of retrying forever
       audio.dispatchEvent(new Event("error"));

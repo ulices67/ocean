@@ -507,7 +507,7 @@ export function resolveApiErrorMessage(
   return t(fallbackKey);
 }
 
-// ---- Types from @liner/contracts --------------------------------------------
+// ---- Types from @ocean/contracts --------------------------------------------
 
 export type {
   SearchType,

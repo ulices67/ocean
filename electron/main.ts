@@ -69,7 +69,7 @@ let touchBarManager: TouchBarManager | null = null;
 let overlayManager: OverlayManager | null = null;
 let bundleManager: BundleManager | null = null;
 
-// liner:// deeplink support (share links bounce here from link.tryliner.fun)
+// ocean:// deeplink support (share links bounce here from link.tryocean.fun)
 
 // cold-start url arrives before the window exists, stash it until renderer is ready
 let pendingDeeplink: DeeplinkTarget | null = findDeeplinkArg(process.argv)
@@ -99,7 +99,7 @@ const MIN_WINDOW_HEIGHT = 705;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    title: "Liner",
+    title: "Ocean",
     icon: path.join(process.env.VITE_PUBLIC!, "icon.png"),
     width: DEFAULT_WINDOW_WIDTH,
     height: DEFAULT_WINDOW_HEIGHT,
@@ -215,7 +215,7 @@ if (!gotTheLock) {
   app.quit();
 } else {
   app.on("second-instance", (_event, argv) => {
-    // running instance gets here when xdg-open / os launches liner:// again
+    // running instance gets here when xdg-open / os launches ocean:// again
     const raw = findDeeplinkArg(argv);
     if (!mainWindow || mainWindow.isDestroyed()) {
       createWindow();
@@ -233,7 +233,7 @@ if (!gotTheLock) {
   });
 
   app.whenReady().then(() => {
-    // register liner:// so browsers / xdg-open route share links to us
+    // register ocean:// so browsers / xdg-open route share links to us
     // (on linux the packaged .desktop carries the mime handler too)
     if (process.defaultApp && process.argv.length >= 2) {
       app.setAsDefaultProtocolClient(DEEP_LINK_SCHEME, process.execPath, [path.resolve(process.argv[1]!)]);
@@ -794,7 +794,7 @@ if (!gotTheLock) {
           try {
             req = https.get(
               url,
-              { timeout: 6000, headers: { "user-agent": "liner-connectivity/1.0" } },
+              { timeout: 6000, headers: { "user-agent": "ocean-connectivity/1.0" } },
               (res) => {
                 let body = "";
                 res.on("data", (chunk) => {
@@ -985,7 +985,8 @@ if (!gotTheLock) {
       };
     });
 
-    // automatic update check after window initialization (packaged app only)
+    // automatic update check disabled (disconnected from external servers)
+    /*
     if (app.isPackaged) {
       setTimeout(() => {
         autoUpdater.checkForUpdates().catch((err) => {
@@ -1001,6 +1002,7 @@ if (!gotTheLock) {
         bundleManager?.checkForUpdates().catch(() => {});
       }, 15 * 60 * 1000);
     }
+    */
 
     app.on("activate", () => {
       if (BrowserWindow.getAllWindows().length === 0) {

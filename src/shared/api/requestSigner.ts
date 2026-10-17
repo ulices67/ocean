@@ -1,8 +1,8 @@
-// signs outgoing api requests with canonical headers: x-liner-signature, timestamp, nonce
+// signs outgoing api requests with canonical headers: x-ocean-signature, timestamp, nonce
 export interface SignedHeaders {
-  "x-liner-signature"?: string;
-  "x-liner-timestamp"?: string;
-  "x-liner-nonce"?: string;
+  "x-ocean-signature"?: string;
+  "x-ocean-timestamp"?: string;
+  "x-ocean-nonce"?: string;
 }
 
 // maintains clock delta between client and server (ms)
@@ -20,8 +20,8 @@ export function syncServerTime(dateHeaderOrMs: string | number | Date): number {
   if (!Number.isNaN(serverMs) && serverMs > 0) {
     serverTimeOffsetMs = serverMs - Date.now();
     // notify electron main process to sync its native signer clock
-    if (typeof window !== "undefined" && window.linerElectron?.syncServerTime) {
-      window.linerElectron.syncServerTime(serverMs).catch(() => {});
+    if (typeof window !== "undefined" && window.oceanElectron?.syncServerTime) {
+      window.oceanElectron.syncServerTime(serverMs).catch(() => {});
     }
   }
   return serverTimeOffsetMs;
@@ -36,7 +36,7 @@ export function getAdjustedTimestamp(): number {
 }
 
 function isElectron(): boolean {
-  return typeof window !== "undefined" && typeof window.linerElectron?.signRequest === "function";
+  return typeof window !== "undefined" && typeof window.oceanElectron?.signRequest === "function";
 }
 
 export async function signApiRequest(
@@ -48,7 +48,7 @@ export async function signApiRequest(
   if (!isElectron()) {
     if (import.meta.env.DEV) {
       console.warn(
-        "[Signer] Not running in Electron environment (window.linerElectron is undefined). Outgoing requests will NOT have HMAC headers.",
+        "[Signer] Not running in Electron environment (window.oceanElectron is undefined). Outgoing requests will NOT have HMAC headers.",
       );
     }
     return {};
@@ -58,7 +58,7 @@ export async function signApiRequest(
   const timestamp = customTimestamp ?? getAdjustedTimestamp();
 
   try {
-    const res = await window.linerElectron!.signRequest({
+    const res = await window.oceanElectron!.signRequest({
       method: method.toUpperCase().trim(),
       path: cleanPath,
       body: body ?? undefined,
@@ -69,9 +69,9 @@ export async function signApiRequest(
       console.error("[Signer] Native signer error:", res.error);
     } else if (res && res.signature) {
       return {
-        "x-liner-signature": res.signature,
-        "x-liner-timestamp": String(res.timestamp ?? timestamp),
-        "x-liner-nonce": res.nonce,
+        "x-ocean-signature": res.signature,
+        "x-ocean-timestamp": String(res.timestamp ?? timestamp),
+        "x-ocean-nonce": res.nonce,
       };
     }
   } catch (err) {

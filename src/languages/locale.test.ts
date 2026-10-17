@@ -37,13 +37,13 @@ describe("locale", () => {
   });
 
   it("migrates legacy 'ua' stored value to 'uk'", () => {
-    localStorage.setItem("liner_locale", "ua");
+    localStorage.setItem("ocean_locale", "ua");
     expect(getStoredLocale()).toBe("uk");
-    expect(localStorage.getItem("liner_locale")).toBe("uk");
+    expect(localStorage.getItem("ocean_locale")).toBe("uk");
   });
 
   it("falls back to browser locale on invalid stored value", () => {
-    localStorage.setItem("liner_locale", "de");
+    localStorage.setItem("ocean_locale", "de");
     expect(getStoredLocale()).toBe("en");
   });
 });

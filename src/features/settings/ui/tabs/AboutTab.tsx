@@ -55,15 +55,15 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
 
   useEffect(() => {
     // dynamically query electron runtime version & bundle status
-    if (window.linerElectron) {
-      window.linerElectron
+    if (window.oceanElectron) {
+      window.oceanElectron
         .getAppVersion?.()
         .then((ver) => {
           if (ver) setAppVersion(ver);
         })
         .catch(() => {});
 
-      window.linerElectron
+      window.oceanElectron
         .bundleGetStatus?.()
         .then((status) => {
           if (status) {
@@ -109,7 +109,7 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
     if (!searchQuery?.trim()) return true;
     const q = searchQuery.toLowerCase().trim();
     const searchableKeys = [
-      "settings.about.liner",
+      "settings.about.ocean",
       "settings.about.tagline",
       "settings.about.updates_title",
       "settings.about.build_info",
@@ -133,7 +133,7 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
                 ? logo
                 : brandingLogos[accentVariant]
             }
-            alt="Liner Logo"
+            alt="Ocean Logo"
             width={44}
             height={44}
             className={
@@ -155,7 +155,7 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
             className="text-text-primary text-[20px] font-[600] tracking-[-0.01em] leading-none m-0"
             style={font}
           >
-            {t("settings.about.liner")}
+            {t("settings.about.ocean")}
           </h2>
           <div
             className="inline-flex items-center gap-[5px] h-[22px] rounded-full bg-border-alpha-14 px-[9px] border border-border-primary/40 text-[11.5px] font-[500] text-text-secondary leading-none select-none"
@@ -201,7 +201,7 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
           <Button
             variant="secondary"
             size="sm"
-            onClick={() => openUrl("https://t.me/liner_app")}
+            onClick={() => openUrl("https://t.me/ocean_app")}
             className="!h-[28px] !px-[10px] !text-[12px] gap-[6px]"
           >
             <FaTelegramPlane size={13} className="text-[#2AABEE]" />
@@ -210,7 +210,7 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
           <Button
             variant="secondary"
             size="sm"
-            onClick={() => openUrl("https://t.me/liner_app?direct")}
+            onClick={() => openUrl("https://t.me/ocean_app?direct")}
             className="!h-[28px] !px-[10px] !text-[12px] gap-[6px]"
           >
             <QuestionCircle size={14} weight="Bold" className="text-text-tertiary" />
@@ -219,7 +219,7 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
           <Button
             variant="secondary"
             size="sm"
-            onClick={() => openUrl("https://github.com/tryliner/desktop")}
+            onClick={() => openUrl("https://github.com/tryocean/desktop")}
             className="!h-[28px] !px-[10px] !text-[12px] gap-[6px]"
           >
             <FaGithub size={13} />
@@ -228,7 +228,7 @@ export function AboutTab({ searchQuery }: { searchQuery?: string }) {
           <Button
             variant="secondary"
             size="sm"
-            onClick={() => openUrl("https://tryliner.fun")}
+            onClick={() => openUrl("https://tryocean.fun")}
             className="!h-[28px] !px-[10px] !text-[12px] gap-[6px]"
           >
             <FaGlobe size={12} className="text-text-tertiary" />

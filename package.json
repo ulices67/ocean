@@ -1,14 +1,14 @@
 {
-  "name": "@liner/client",
+  "name": "@ocean/client",
   "version": "0.1.35",
   "type": "module",
   "private": true,
-  "description": "Liner Music Player",
+  "description": "Ocean Music Player",
   "author": {
     "name": "hkamori",
-    "email": "dev@tryliner.fun"
+    "email": "dev@tryocean.fun"
   },
-  "desktopName": "liner",
+  "desktopName": "ocean",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
@@ -24,25 +24,18 @@
     "electron:build:mac": "tsc -b && vite build && electron-builder --mac"
   },
   "build": {
-    "appId": "com.hkamori.liner",
-    "productName": "Liner",
-    "executableName": "liner",
+    "appId": "com.hkamori.ocean",
+    "productName": "Ocean",
+    "executableName": "ocean",
     "artifactName": "${productName}-${version}-${arch}.${ext}",
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "tryliner",
-        "repo": "desktop"
-      }
-    ],
     "directories": {
       "output": "release"
     },
     "protocols": [
       {
-        "name": "Liner",
+        "name": "Ocean",
         "schemes": [
-          "liner"
+          "ocean"
         ]
       }
     ],
@@ -51,9 +44,9 @@
       "dist-electron/**/*"
     ],
     "linux": {
-      "executableName": "liner",
+      "executableName": "ocean",
       "syncDesktopName": true,
-      "maintainer": "hkamori <dev@tryliner.fun>",
+      "maintainer": "hkamori <dev@tryocean.fun>",
       "icon": "build/icons",
       "target": [
         "AppImage",
@@ -62,21 +55,21 @@
       "category": "Audio"
     },
     "deb": {
-      "packageName": "liner",
-      "artifactName": "liner_${version}_${arch}.${ext}"
+      "packageName": "ocean",
+      "artifactName": "ocean_${version}_${arch}.${ext}"
     },
     "appImage": {
-      "artifactName": "Liner-${version}.${ext}"
+      "artifactName": "Ocean-${version}.${ext}"
     },
     "win": {
-      "executableName": "liner",
+      "executableName": "ocean",
       "icon": "build/icon.ico",
       "target": [
         "nsis"
       ]
     },
     "nsis": {
-      "artifactName": "Liner-Setup-${version}.${ext}",
+      "artifactName": "Ocean-Setup-${version}.${ext}",
       "allowToChangeInstallationDirectory": true,
       "oneClick": false
     },

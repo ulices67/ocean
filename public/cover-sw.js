@@ -1,10 +1,10 @@
-const CACHE_NAME = "liner-covers-v2";
+const CACHE_NAME = "ocean-covers-v2";
 const MAX_ENTRIES = 600;
 
 const COVER_HOSTS = [
   "yt3.googleusercontent.com",
   "lh3.googleusercontent.com",
-  "covers.tryliner.fun",
+  "covers.tryocean.fun",
   "i1.sndcdn.com",
   "i2.sndcdn.com",
   "i3.sndcdn.com",

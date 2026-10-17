@@ -57,7 +57,7 @@ const TrackItem = memo(function TrackItem({
   onGrabStart,
 }: TrackItemProps) {
   const handlePlay = useCallback(() => {
-    if (typeof window !== "undefined" && window.__linerWasDragging) return;
+    if (typeof window !== "undefined" && window.__oceanWasDragging) return;
     const context = playlistId ? `playlist:${playlistId}` : playlistTitle;
     playerEngine.playTrack(
       track,
