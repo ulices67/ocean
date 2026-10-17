@@ -1,6 +1,6 @@
 // primary api and polish edge relay fallback
-export const DEFAULT_PRIMARY_API = "https://api.tryocean.fun";
-export const FALLBACK_EDGE_API = "http://edge.tryocean.fun:10518";
+export const DEFAULT_PRIMARY_API = "https://api.tryliner.fun";
+export const FALLBACK_EDGE_API = "http://edge.tryliner.fun:10518";
 
 const STORAGE_KEY = "ocean_active_api_base";
 const HEALTH_TIMEOUT_MS = 6000;

@@ -2,7 +2,7 @@
 // derives covers.tryocean.fun fallback url directly from track raw cover url
 // hmac token is computed in-memory via rust wasm module
 
-const COVER_PROXY_BASE = "https://covers.tryocean.fun";
+const COVER_PROXY_BASE = "https://covers.tryliner.fun";
 const COVER_PROXY_SIZE = 1024;
 
 // Must mirror ALLOWED_HOSTS in apps/workers/covers: a token for any other host

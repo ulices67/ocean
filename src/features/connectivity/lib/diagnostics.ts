@@ -5,10 +5,10 @@ import { SHARE_BASE_URL } from "@/shared/utils/share";
 // close an import cycle (api hooks record failures into this feature).
 const API_BASE =
   (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, "") ||
-  "https://api.tryocean.fun";
+  "https://api.tryliner.fun";
 const COVERS_BASE =
   (import.meta.env.VITE_COVERS_PROXY_URL as string | undefined)?.replace(/\/+$/, "") ||
-  "https://covers.tryocean.fun";
+  "https://covers.tryliner.fun";
 
 const CHECK_TIMEOUT_MS = 8000;
 
